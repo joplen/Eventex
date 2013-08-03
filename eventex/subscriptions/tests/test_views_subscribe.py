@@ -42,7 +42,7 @@ class SubscribeTest(TestCase):
 
 class SubscribePostTest(TestCase):    
     def setUp(self):
-        data = dict(name='João Guedes', cpf='12345678901',
+        data = dict(name='Joao Guedes', cpf='12345678901',
                     email='joao@guedes.eu', phone='15-12121212')
         self.resp = self.client.post('/inscricao/', data)
 
@@ -54,13 +54,27 @@ class SubscribePostTest(TestCase):
         'Valid POST must be saved.'
         self.assertTrue(Subscription.objects.exists())
 
+
 class SubscribeInvalidPostTest(TestCase):
     def setUp(self):
-        data = dict(name='João Guedes', cpf='000000000012',
+        data = dict(name='Joao Guedes', cpf='000000000012',
                     email='joao@guedes.eu', phone='15-12121212')
         self.resp = self.client.post('/inscricao/', data)
 
     def test_post(self):
         'Invalid POST should not redirect.'
         self.assertEqual(200, self.resp.status_code)
+
+    def test_form_errors(self):
+        'Form must contain errors.'
+        self.assertTrue(self.resp.context['form'].errors)
+
+    def test_dont_save(self):
+        'Do not save data.'
+        self.assertFalse(Subscription.objects.exists())
+
+    
+
+        
+
 
