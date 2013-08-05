@@ -1,5 +1,6 @@
 #coding: utf-8
 from django.test import TestCase
+from django.core.urlresolvers import reverse as r
 
 
 class SimpleTest(TestCase):
@@ -10,7 +11,7 @@ class SimpleTest(TestCase):
         self.assertEqual(1 + 1, 2)
 class HomepageTest(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/')
+        self.resp = self.client.get(r('core:homepage'))
 
     def test_get(self):
         'Get / must return status cod 200.'

@@ -1,0 +1,17 @@
+ teste eu | False
+Validating models...
+
+0 errors found
+August 04, 2013 - 18:03:20
+Django version 1.5.1, using settings 'eventex.settings'
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/css/changelists.css'[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/js/core.js'
+
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/js/admin/RelatedObjectLookups.js'
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/js/jquery.min.js'
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/css/base.css'
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/js/jquery.init.js'
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/js/actions.min.js'
+[Error 3] O sistema não pode encontrar o caminho especificado: u'C:\\Projetos\\wttd\\eventex\\static/admin/img/icon_searchbox.png'
+ teste eu | False
