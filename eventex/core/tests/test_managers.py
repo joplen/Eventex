@@ -7,7 +7,6 @@ class ContactManagerTest(TestCase):
     def setUp(self):
         s = Speaker.objects.create(name='Joao Guedes',
             slug='joao-guedes', url='http://joaoguedes.eu')
-
         s.contact_set.add(Contact(kind='E', value='joao@guedes.eu'),
                           Contact(kind='P', value='15-12121212'),
                           Contact(kind='F', value='15-12345678'))
@@ -38,8 +37,12 @@ class PeriodManagerTest(TestCase):
             Talk.objects.at_morning(), ['Morning Talk'],
             lambda t: t.title)
         
-#    def test_afternoon(self):
-#        'Should return only talks after 11:59:59.'
-#        self.assertQuerysetEqual(
-#            Talk.objects.at_afternoon(), ['Afternoon Talk'],
-#            lambda t: t.title)
+    def test_afternoon(self):
+        'Should return only talks after 11:59:59.'
+        self.assertQuerysetEqual(
+            Talk.objects.at_afternoon(), ['Afternoon Talk'],
+            lambda t: t.title)
+
+
+
+

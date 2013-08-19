@@ -1,0 +1,128 @@
+from django.template import (Context, Template, Node, TemplateSyntaxError,
+                             Variable, VariableDoesNotExist, Library)
+
+TEMPLATE ="""
+ <object width="480" height="385">
+   <param name="movie" value="http://www.youtube.com/v/{{ id }}" />
+   <param name="allowFullScreen" value="true" />
+   <param name="alowscriptaccess" value="always" />
+   <embed src="http://www.youtube.com/v/{{ id }}"
+       type="application/x-shockwave-flash" allowscriptaccess="always"
+       allowfullscreen="true" width="480" height="385">
+   </embed>
+ </object>
+ """
+def do_youtube(parser, token):
+    try:
+        #split_contents() knows not to split quoted strings.
+        tag_name, id_ = token.split_contents()
+    except ValueError:
+        raise TemplateSyntaxError, "%r tag requires 1 argument" % \
+              token.contents.split()[0]
+    return YoutubeNode(id_)
+
+class YoutubeNode(Node):
+    def __init__(self, id_):
+        self.id = Variable(id_)
+
+    def rednder(self, context):
+        try:
+            actual_id = self.id.resolve(context)
+        except VariableDoesNotExist:
+            actual_id = self.id
+
+        t = Template(TEMPLATE)
+        c = Context({'id': actual_id}, autoescape = context.autoescape)
+register = Library()
+register.tag('youtube', do_youtube)
+
+
+
+
+
+================================o mesmo copi do colegas
+from django.template import (Context, Template, Node, TemplateSyntaxError,
+                             Variable, VariableDoesNotExist, Library)
+
+TEMPLATE =' <iframe width="420" height="315 src="//www.youtube.com/embed/{{ id }}" frameborder="0" allowfullscreen></iframe>'
+
+
+def do_youtube(parser, token):
+    try:
+        tag_name, id_ = token.split_contents()
+    except ValueError:
+        raise TemplateSyntaxError, "%r tag requires 1 argument" % \
+              token.contents.split()[0]
+    return YoutubeNode(id_)
+
+class YoutubeNode(Node):
+    def __init__(self, id_):
+        self.id = Variable(id_)
+
+    def rednder(self, context):
+        try:
+            actual_id = self.id.resolve(context)
+        except VariableDoesNotExist:
+            actual_id = self.id
+
+        t = Template(TEMPLATE)
+        c = Context({'id': actual_id}, autoescape = context.autoescape)
+register = Library()
+register.tag('youtube', do_youtube)
+
+
+
+
+========================== test models media
+
+
+
+========================Testmanager
+# coding: utf-8
+
+from django.test import TestCase
+from eventex.core.models import Contact, Speaker, Talk
+
+class ContactManagerTest(TestCase):
+    def setUp(self):
+        s = Speaker.objects.create(name='Joao Guedes',
+            slug='joao-guedes', url='http://joaoguedes.eu')
+        s.contact_set.add(Contact(kind='E', value='joao@guedes.eu'),
+                          Contact(kind='P', value='15-12121212'),
+                          Contact(kind='F', value='15-12345678'))
+
+    def test_emails(self):
+        qs = Contact.email.all()
+        expected = ['<Contact: joao@guedes.eu>']
+        self.assertQuerysetEqual(qs, expected)
+
+    def test_phones(self):
+        qs = Contact.phones.all()
+        expected = ['<Contact: 15-12121212>']
+        self.assertQuerysetEqual(qs, expected)
+
+    def test_faxes(self):
+        qs = Contact.faxes.all()
+        expected = ['<Contact: 15-12345678>']
+        self.assertQuerysetEqual(qs, expected)
+
+class PeriodManagerTest(TestCase):
+    def setUp(self):
+        Talk.objects.create(title='Morning Talk', start_time='10:00' )
+        Talk.objects.create(title='Afternoon Talk', start_time='12:00')
+
+    def test_morning(self):
+        'Should return only talks before 12:00.'
+        self.assertQuerysetEqual(
+            Talk.objects.at_morning(), ['Morning Talk'],
+            lambda t: t.title)
+        
+    def test_afternoon(self):
+        'Should return only talks after 11:59:59.'
+        self.assertQuerysetEqual(
+            Talk.objects.at_afternoon(), ['Afternoon Talk'],
+            lambda t: t.title)
+
+
+
+
