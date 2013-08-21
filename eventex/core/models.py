@@ -19,8 +19,8 @@ class Speaker(models.Model):
 
 class Contact(models.Model):
     KINDS=(('P', _('Telefone')),
-          ('E',_('E-mail')),
-          ('F',_('Fax'))
+          ('E', _('E-mail')),
+          ('F', _('Fax')),
           )
     speaker = models.ForeignKey('Speaker', verbose_name=_('palestrante'))
     kind = models.CharField(_('tipo'), max_length=1, choices=KINDS)

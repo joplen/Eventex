@@ -7,7 +7,7 @@ class ContactInline(admin.TabularInline):
     extra = 1
 
 class SpeakerAdmin(admin.ModelAdmin):
-    imlines = [ContactInline,]
+    inlines = [ContactInline,]
     prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(Speaker, SpeakerAdmin)
