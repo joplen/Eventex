@@ -7,8 +7,13 @@ class TalkModelTest(TestCase):
     def setUp(self):
         self.talk = Talk.objects.create(
             title = u'Introdução ao Django',
-            description = u'Descrição da palestra',
+            description = u'Descrição da palestra.',
             start_time = '10:00')
+
+        self.talk2 = Talk.objects.create(
+            title = u'Introdução ao Django',
+            description = u'Descrição da palestra',
+            start_time = '13:00')
 
     def test_create(self):
         self.assertEqual(1, self.talk.pk)

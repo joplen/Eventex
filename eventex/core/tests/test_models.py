@@ -6,8 +6,8 @@ from eventex.core.models import Speaker, Contact
 class SpeakerModelTest(TestCase):
     def setUp(self):
         self.speaker = Speaker(name='Joao Guedes',
-                               slug='Joao-Guedes', url='http://joaoguedes.eu',
-                               description='Passionate software developer!')
+            slug='Joao-Guedes', url='http://joaoguedes.eu',
+            description='Passionate software developer!')
         self.speaker.save()
 
     def test_create(self):
@@ -23,6 +23,7 @@ class ContactModelTest(TestCase):
         self.speaker = Speaker.objects.create(name='Joao Geudes',
                 slug='joao-guedes', url='http://joaoguedes.eu',
                 description='Passionate software developer!' )
+        
     def test_email(self):
         contact = Contact.objects.create(speaker=self.speaker, kind='E',
                                          value='joao@guedes.eu')

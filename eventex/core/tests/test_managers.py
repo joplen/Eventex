@@ -12,7 +12,7 @@ class ContactManagerTest(TestCase):
                           Contact(kind='F', value='15-12345678'))
 
     def test_emails(self):
-        qs = Contact.email.all()
+        qs = Contact.emails.all()
         expected = ['<Contact: joao@guedes.eu>']
         self.assertQuerysetEqual(qs, expected)
 

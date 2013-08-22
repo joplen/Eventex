@@ -17,7 +17,8 @@ def do_youtube(parser, token):
         #split_contents() knows not to split quoted strings.
         tag_name, id_ = token.split_contents()
     except ValueError:
-        raise TemplateSyntaxError, "%r tag require 1 argument" % token.contents.split()[0]
+        raise TemplateSyntaxError, "%r tag requires 1 argument" % \
+              token.contents.split()[0]
     return YoutubeNode(id_)
 
 class YoutubeNode(Node):

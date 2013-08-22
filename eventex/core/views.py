@@ -15,6 +15,7 @@ def speaker_detail(request, slug):
     context = {'speaker': speaker}
     return render(request, 'core/speaker_detail.html',
                   context)
+
 def talk_list(request):
     context = {
         'morning_talks': Talk.objects.at_morning(),

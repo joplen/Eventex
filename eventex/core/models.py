@@ -27,7 +27,7 @@ class Contact(models.Model):
     value = models.CharField(_('valor'), max_length=255)
 
     objects = models.Manager()
-    email = KindContactManager('E')
+    emails = KindContactManager('E')
     phones = KindContactManager('P')
     faxes = KindContactManager('F')
 
@@ -75,8 +75,8 @@ class Media(models.Model):
 
     talk = models.ForeignKey('Talk')
     kind = models.CharField(_('Tipo'), max_length=2, choices=MEDIAS)
-    title = models.CharField(_(u'Título'), max_length=2)
+    title = models.CharField(_(u'Título'), max_length=200)
     media_id = models.CharField(_('Ref'), max_length=255)
 
     def __unicode__(self):
-        return u'%s - %s' %(self.talk.title, self.title)
+        return u'%s - %s' % (self.talk.title, self.title)
