@@ -103,7 +103,7 @@ class Migration(SchemaMigration):
             'kind': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             'media_id': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'talk': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['core.Talk']"}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '2'})
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         u'core.speaker': {
             'Meta': {'object_name': 'Speaker'},

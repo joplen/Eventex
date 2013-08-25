@@ -2,16 +2,13 @@
 from django.contrib.auth import get_user_model
 
 class EmailBackend(object):
-    def authenticate(self, email=None, password=None, **kwargs):
+    def authenticate(self, email, password, **kwargs):
         UserModel = get_user_model()
-
-        if email is None:
-            email = kwargs.get(UserModel.USERNAME_FIELD)
-
+#        if email is None:
+#            email = kwargs.get(UserModel.USERNAME_FIELD)
         try:
             user = UserModel.objects.get(email=email)
-        except (UserModel.DoesNotExist,
-                UserModel.MultipleObjectsReturned):
+        except (UserModel.DoesNotExist, UserModel.MultipleObjectsReturned):
             return None
         
         if not user.check_password(password):
@@ -24,5 +21,3 @@ class EmailBackend(object):
             return UserModel.objects.get(pk=user_id)
         except UserModel.DoesNotExist:
             return None
-
-        

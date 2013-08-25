@@ -13,7 +13,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('talk', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.Talk'])),
             ('kind', self.gf('django.db.models.fields.CharField')(max_length=2)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=2)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('media_id', self.gf('django.db.models.fields.CharField')(max_length=255)),
         ))
         db.send_create_signal(u'core', ['Media'])
@@ -44,7 +44,7 @@ class Migration(SchemaMigration):
             'kind': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             'media_id': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'talk': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['core.Talk']"}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '2'})
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         u'core.speaker': {
             'Meta': {'object_name': 'Speaker'},
